@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgomez-b <jgomez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 16:10:16 by jgomez-b          #+#    #+#             */
-/*   Updated: 2024/03/01 05:45:19 by jgomez-b         ###   ########.fr       */
+/*   Created: 2024/03/14 20:26:53 by jgomez-b          #+#    #+#             */
+/*   Updated: 2024/03/15 00:38:58 by jgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	char	*dst;
-	char	*sub;
+	t_list	*node_aux;
 
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		len = 0;
-	else if (len > (ft_strlen(s) - start))
-		len = ft_strlen(s) - start;
-	dst = (char *)malloc(sizeof(char) * (len + 1));
-	if (!dst)
-		return (NULL);
-	s += start;
-	sub = dst;
-	*(dst + len) = '\0';
-	while (len-- && *s)
-		*dst++ = *s++;
-	return (sub);
+	if (!*lst || !lst || !del)
+		return ;
+	while (*lst)
+	{
+		node_aux = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = node_aux;
+	}
 }

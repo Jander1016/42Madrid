@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgomez-b <jgomez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 13:29:59 by jgomez-b          #+#    #+#             */
-/*   Updated: 2024/03/01 05:44:07 by jgomez-b         ###   ########.fr       */
+/*   Created: 2024/03/14 01:33:17 by jgomez-b          #+#    #+#             */
+/*   Updated: 2024/03/15 00:38:36 by jgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	total_size;
-	void	*memory;
+	t_list	*node;
 
-	total_size = count * size;
-	memory = malloc(total_size);
-	if (memory == NULL)
+	node = (t_list *)malloc(sizeof(t_list));
+	if (!node)
 		return (NULL);
-	ft_memset(memory, 0, total_size);
-	return (memory);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }
 /*
-int main(void)
+int	main(void)
 {
-   long *buffer;
+	int	data = 42;
+	t_list	*new_elem;
 
-   buffer = (long *)calloc(40, sizeof(long));
-   if(buffer != NULL)
-      printf("Allocated 40 long integers\n");
-   else
-      printf("Can't allocate memory\n");
-
-   free(buffer);
-   return 0;
+	new_elem = ft_lstnew(&data);
+	printf("Data: %d\n", *(int *)(new_elem->content));
+	return (0);
 }*/
