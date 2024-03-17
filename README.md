@@ -92,7 +92,7 @@ gcc clang make python-norminette valgrind (linux)
 
 Clone the repository
 ```shell
-git clone https://gitlab.com/madebypixel02/libft.git
+git clone https://github.com/Jander1016/42Madrid.git
 cd libft
 make
 ```
