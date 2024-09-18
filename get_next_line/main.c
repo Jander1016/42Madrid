@@ -6,7 +6,7 @@
 /*   By: jgomez-b < jgomez-b@student.42madrid.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:08:39 by jgomez-b          #+#    #+#             */
-/*   Updated: 2024/09/16 00:30:38 by jgomez-b         ###   ########.fr       */
+/*   Updated: 2024/09/19 00:57:18 by jgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int	main(int ac, char **av)
 	int				i;
 
 	(void)ac;
+	//(void)av;
 	fd = open(av[1], O_RDONLY);
+	//fd = 1;
 	if (!fd)
 		return (1);
 	i = 0;
@@ -32,10 +34,7 @@ int	main(int ac, char **av)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (THEN_DIFF)
-			printf("line: %i--->%s\n", i, line);
-		else
-			printf("line [%02d]: %s\n", i, line);
+		printf("line: %i--->%s\n", i, line);
 		free(line);
 	}
 	close(fd);

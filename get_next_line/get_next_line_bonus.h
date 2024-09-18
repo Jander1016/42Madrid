@@ -6,17 +6,19 @@
 /*   By: jgomez-b < jgomez-b@student.42madrid.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 01:16:47 by jgomez-b          #+#    #+#             */
-/*   Updated: 2024/09/16 01:46:13 by jgomez-b         ###   ########.fr       */
+/*   Updated: 2024/09/19 00:40:29 by jgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000000
+#  define BUFFER_SIZE 42
 # endif
+
+//# endif
 # ifndef FD_PLUS
-#  define FD_PLUS 1000
+#  define FD_PLUS 1024
 # endif
 # include <unistd.h>
 # include <stdlib.h>

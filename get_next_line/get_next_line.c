@@ -6,7 +6,7 @@
 /*   By: jgomez-b < jgomez-b@student.42madrid.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 09:55:46 by jgomez-b          #+#    #+#             */
-/*   Updated: 2024/09/16 00:35:50 by jgomez-b         ###   ########.fr       */
+/*   Updated: 2024/09/18 23:42:19 by jgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*read_and_store(int fd, char *store_line)
 	bytes_read = 1;
 	while (!ft_strchr(store_line, '\n') && bytes_read > 0)
 	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		bytes_read = (int)read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read <= 0)
 		{
 			free(buffer);
@@ -48,8 +48,8 @@ static int	get_line_len(char *store_line)
 	while (store_line[i] && store_line[i] != '\n')
 		i++;
 	if (store_line[i] == '\n')
-		return (i + 2);
-	return (i + 1);
+		return (i + 1);
+	return (i);
 }
 
 static char	*extract_line(char *store_line)
@@ -63,7 +63,7 @@ static char	*extract_line(char *store_line)
 	line_len = get_line_len(store_line);
 	if (line_len == 0)
 		return (NULL);
-	line = malloc(sizeof(char) * line_len);
+	line = malloc(sizeof(char) * line_len + 1);
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -109,10 +109,10 @@ static char	*update_store(char *store_line)
 
 char	*get_next_line(int fd)
 {
-	static char	*store_line;
+	static char	*store_line = NULL;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	store_line = read_and_store(fd, store_line);
 	if (!store_line)
